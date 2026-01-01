@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-depl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - name: order
+          image: ecommerce/order-service
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "4003"
+            - name: SERVICE_NAME
+              value: order-service
+            - name: MONGODB_URI
+              value: mongodb://admin:password123@mongodb-srv:27017/ecommerce_orders?authSource=admin
+            - name: REDIS_HOST
+              value: redis-srv
+            - name: REDIS_PORT
+              value: "6379"
+            - name: EVENT_BUS_URL
+              value: http://event-bus-srv:4005
+            - name: PRODUCT_SERVICE_URL
+              value: http://product-srv:4002
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: jwt-secret
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: encryption-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-srv
+spec:
+  selector:
+    app: order
+  ports:
+    - name: order
+      protocol: TCP
+      port: 4003
+      targetPort: 4003

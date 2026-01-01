@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-depl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      containers:
+        - name: product
+          image: ecommerce/product-service
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "4002"
+            - name: SERVICE_NAME
+              value: product-service
+            - name: MONGODB_URI
+              value: mongodb://admin:password123@mongodb-srv:27017/ecommerce_products?authSource=admin
+            - name: REDIS_HOST
+              value: redis-srv
+            - name: REDIS_PORT
+              value: "6379"
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: jwt-secret
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: encryption-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-srv
+spec:
+  selector:
+    app: product
+  ports:
+    - name: product
+      protocol: TCP
+      port: 4002
+      targetPort: 4002

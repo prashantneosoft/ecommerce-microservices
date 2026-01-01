@@ -1,0 +1,176 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: ecommerce_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ecommerce-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: ecommerce_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    networks:
+      - ecommerce-network
+
+  event-bus:
+    build:
+      context: ./event-bus
+      dockerfile: Dockerfile
+    container_name: ecommerce_event_bus
+    restart: always
+    ports:
+      - "4005:4005"
+    environment:
+      - NODE_ENV=development
+      - PORT=4005
+      - SERVICE_NAME=event-bus
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - ecommerce-network
+
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    container_name: ecommerce_auth
+    restart: always
+    ports:
+      - "4001:4001"
+    environment:
+      - NODE_ENV=development
+      - PORT=4001
+      - SERVICE_NAME=auth-service
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/ecommerce_auth?authSource=admin
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production-min-32-chars
+      - JWT_REFRESH_SECRET=your-refresh-token-secret-change-in-production
+      - ENCRYPTION_KEY=12345678901234567890123456789012
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - ecommerce-network
+
+  product-service:
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    container_name: ecommerce_product
+    restart: always
+    ports:
+      - "4002:4002"
+    environment:
+      - NODE_ENV=development
+      - PORT=4002
+      - SERVICE_NAME=product-service
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/ecommerce_products?authSource=admin
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production-min-32-chars
+      - ENCRYPTION_KEY=12345678901234567890123456789012
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - ecommerce-network
+
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    container_name: ecommerce_order
+    restart: always
+    ports:
+      - "4003:4003"
+    environment:
+      - NODE_ENV=development
+      - PORT=4003
+      - SERVICE_NAME=order-service
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/ecommerce_orders?authSource=admin
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - EVENT_BUS_URL=http://event-bus:4005
+      - PRODUCT_SERVICE_URL=http://product-service:4002
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production-min-32-chars
+      - ENCRYPTION_KEY=12345678901234567890123456789012
+    depends_on:
+      - mongodb
+      - redis
+      - event-bus
+      - product-service
+    networks:
+      - ecommerce-network
+
+  payment-service:
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile
+    container_name: ecommerce_payment
+    restart: always
+    ports:
+      - "4004:4004"
+    environment:
+      - NODE_ENV=development
+      - PORT=4004
+      - SERVICE_NAME=payment-service
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/ecommerce_payments?authSource=admin
+      - EVENT_BUS_URL=http://event-bus:4005
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production-min-32-chars
+      - ENCRYPTION_KEY=12345678901234567890123456789012
+    depends_on:
+      - mongodb
+      - event-bus
+    networks:
+      - ecommerce-network
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: ecommerce_gateway
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - SERVICE_NAME=api-gateway
+      - AUTH_SERVICE_URL=http://auth-service:4001
+      - PRODUCT_SERVICE_URL=http://product-service:4002
+      - ORDER_SERVICE_URL=http://order-service:4003
+      - PAYMENT_SERVICE_URL=http://payment-service:4004
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production-min-32-chars
+      - ENCRYPTION_KEY=12345678901234567890123456789012
+    depends_on:
+      - auth-service
+      - product-service
+      - order-service
+      - payment-service
+      - redis
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
