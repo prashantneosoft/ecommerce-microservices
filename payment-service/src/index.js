@@ -1,0 +1,48 @@
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const helmet = require("helmet");
+const cors = require("cors");
+const compression = require("compression");
+const paymentRoutes = require("./routes/paymentRoutes");
+const paymentController = require("./controllers/paymentController");
+const { errorHandler } = require("../../shared/middleware/errorHandler");
+const { encryptionMiddleware } = require("../../shared/middleware/encryption");
+const logger = require("../../shared/utils/logger");
+
+const app = express();
+const PORT = process.env.PORT || 4004;
+
+app.use(helmet());
+app.use(cors({ origin: process.env.ALLOWED_ORIGINS?.split(",") || "*" }));
+app.use(compression());
+app.use(express.json({ limit: "10mb" }));
+app.use(encryptionMiddleware);
+
+app.use("/api/payments", paymentRoutes);
+app.post("/events", paymentController.handleEvent);
+
+app.get("/health", (req, res) => {
+  res.json({ status: "healthy", service: "payment-service" });
+});
+
+app.use(errorHandler);
+
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    logger.info("MongoDB connected");
+
+    app.listen(PORT, () => {
+      logger.info(`Payment Service listening on port ${PORT}`);
+    });
+  } catch (error) {
+    logger.error("Failed to start server:", error);
+    process.exit(1);
+  }
+};
+
+startServer();
