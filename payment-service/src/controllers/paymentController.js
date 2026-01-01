@@ -1,5 +1,5 @@
 const paymentService = require("../services/paymentService");
-const { asyncHandler } = require("../../../shared/middleware/errorHandler");
+const { asyncHandler } = require("shared/middleware/errorHandler");
 
 exports.processPayment = asyncHandler(async (req, res) => {
   const paymentData = {
@@ -39,7 +39,7 @@ exports.refundPayment = asyncHandler(async (req, res) => {
 exports.handleEvent = asyncHandler(async (req, res) => {
   const { type, data } = req.body;
 
-  const { EVENTS } = require("../../../shared/utils/constants");
+  const { EVENTS } = require("shared/utils/constants");
 
   if (type === EVENTS.ORDER_CREATED) {
     await paymentService.handleOrderCreated(data);

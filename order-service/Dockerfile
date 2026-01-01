@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # 5️⃣ Copy source code
-COPY src ./src
+COPY . .
 
 # 6️⃣ Expose port (actual value comes from ENV)
 EXPOSE 4003

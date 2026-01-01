@@ -1,9 +1,9 @@
 const Payment = require("../models/Payment");
 const paymentGateway = require("./paymentGateway");
 const retryService = require("./retryService");
-const { AppError } = require("../../../shared/middleware/errorHandler");
-const { EVENTS, PAYMENT_STATUS } = require("../../../shared/utils/constants");
-const logger = require("../../../shared/utils/logger");
+const { AppError } = require("shared/middleware/errorHandler");
+const { EVENTS, PAYMENT_STATUS } = require("shared/utils/constants");
+const logger = require("shared/utils/logger");
 
 class PaymentService {
   async processPayment(paymentData) {

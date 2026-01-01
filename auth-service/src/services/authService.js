@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const redisClient = require("../../../shared/utils/redis");
-const { AppError } = require("../../../shared/middleware/errorHandler");
+const redisClient = require("shared/utils/redis");
+const { AppError } = require("shared/middleware/errorHandler");
 
 class AuthService {
   generateAccessToken(userId, role) {

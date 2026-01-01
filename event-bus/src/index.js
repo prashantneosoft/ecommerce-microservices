@@ -3,7 +3,7 @@ const express = require("express");
 const axios = require("axios");
 const helmet = require("helmet");
 const cors = require("cors");
-const logger = require("../../shared/utils/logger");
+const logger = require("shared/utils/logger");
 
 const app = express();
 const PORT = process.env.PORT || 4005;

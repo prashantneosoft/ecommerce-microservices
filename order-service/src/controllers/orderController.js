@@ -1,5 +1,5 @@
 const orderService = require("../services/orderService");
-const { asyncHandler } = require("../../../shared/middleware/errorHandler");
+const { asyncHandler } = require("shared/middleware/errorHandler");
 
 exports.createOrder = asyncHandler(async (req, res) => {
   const order = await orderService.createOrder(req.user.userId, req.body);
@@ -46,7 +46,7 @@ exports.cancelOrder = asyncHandler(async (req, res) => {
 exports.handleEvent = asyncHandler(async (req, res) => {
   const { type, data } = req.body;
 
-  const { EVENTS } = require("../../../shared/utils/constants");
+  const { EVENTS } = require("shared/utils/constants");
 
   switch (type) {
     case EVENTS.PAYMENT_PROCESSED:

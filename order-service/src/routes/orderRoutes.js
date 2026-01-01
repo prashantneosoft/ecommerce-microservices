@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const orderController = require("../controllers/orderController");
-const { auth } = require("../../../shared/middleware/auth");
-const { validate, schemas } = require("../../../shared/middleware/validation");
-const { standardLimiter } = require("../../../shared/middleware/rateLimiter");
+const { auth } = require("shared/middleware/auth");
+const { validate, schemas } = require("shared/middleware/validation");
+const { standardLimiter } = require("shared/middleware/rateLimiter");
 
 router.use(auth);
 

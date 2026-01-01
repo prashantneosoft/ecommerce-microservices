@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
-const { validate, schemas } = require("../../../shared/middleware/validation");
-const { auth } = require("../../../shared/middleware/auth");
+const { validate, schemas } = require("shared/middleware/validation");
+const { auth } = require("shared/middleware/auth");
 const {
   standardLimiter,
   strictLimiter,
-} = require("../../../shared/middleware/rateLimiter");
+} = require("shared/middleware/rateLimiter");
 
 router.post(
   "/register",

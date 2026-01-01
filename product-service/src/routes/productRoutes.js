@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/productController");
-const { auth, authorize } = require("../../../shared/middleware/auth");
-const { validate, schemas } = require("../../../shared/middleware/validation");
+const { auth, authorize } = require("shared/middleware/auth");
+const { validate, schemas } = require("shared/middleware/validation");
 const {
   standardLimiter,
   generousLimiter,
-} = require("../../../shared/middleware/rateLimiter");
+} = require("shared/middleware/rateLimiter");
 
 router.get("/", generousLimiter, productController.getProducts);
 router.get("/:id", generousLimiter, productController.getProduct);

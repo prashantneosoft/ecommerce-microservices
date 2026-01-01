@@ -6,9 +6,9 @@ const cors = require("cors");
 const compression = require("compression");
 const paymentRoutes = require("./routes/paymentRoutes");
 const paymentController = require("./controllers/paymentController");
-const { errorHandler } = require("../../shared/middleware/errorHandler");
-const { encryptionMiddleware } = require("../../shared/middleware/encryption");
-const logger = require("../../shared/utils/logger");
+const { errorHandler } = require("shared/middleware/errorHandler");
+const { encryptionMiddleware } = require("shared/middleware/encryption");
+const logger = require("shared/utils/logger");
 
 const app = express();
 const PORT = process.env.PORT || 4004;

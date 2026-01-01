@@ -1,10 +1,10 @@
 const Order = require("../models/Order");
 const axios = require("axios");
 const retryService = require("./retryService");
-const redisClient = require("../../../shared/utils/redis");
-const { AppError } = require("../../../shared/middleware/errorHandler");
-const { EVENTS, ORDER_STATUS } = require("../../../shared/utils/constants");
-const logger = require("../../../shared/utils/logger");
+const redisClient = require("shared/utils/redis");
+const { AppError } = require("shared/middleware/errorHandler");
+const { EVENTS, ORDER_STATUS } = require("shared/utils/constants");
+const logger = require("shared/utils/logger");
 
 class OrderService {
   async createOrder(userId, orderData) {

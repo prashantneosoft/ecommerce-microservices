@@ -1,7 +1,7 @@
 const Product = require("../models/Product");
-const redisClient = require("../../../shared/utils/redis");
-const { AppError } = require("../../../shared/middleware/errorHandler");
-const { CACHE_TTL } = require("../../../shared/utils/constants");
+const redisClient = require("shared/utils/redis");
+const { AppError } = require("shared/middleware/errorHandler");
+const { CACHE_TTL } = require("shared/utils/constants");
 
 class ProductService {
   async createProduct(productData) {

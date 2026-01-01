@@ -1,5 +1,5 @@
 const productService = require("../services/productService");
-const { asyncHandler } = require("../../../shared/middleware/errorHandler");
+const { asyncHandler } = require("shared/middleware/errorHandler");
 
 exports.createProduct = asyncHandler(async (req, res) => {
   const product = await productService.createProduct(req.body);

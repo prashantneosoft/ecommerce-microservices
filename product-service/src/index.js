@@ -5,10 +5,10 @@ const helmet = require("helmet");
 const cors = require("cors");
 const compression = require("compression");
 const productRoutes = require("./routes/productRoutes");
-const { errorHandler } = require("../../shared/middleware/errorHandler");
-const { encryptionMiddleware } = require("../../shared/middleware/encryption");
-const redisClient = require("../../shared/utils/redis");
-const logger = require("../../shared/utils/logger");
+const { errorHandler } = require("shared/middleware/errorHandler");
+const { encryptionMiddleware } = require("shared/middleware/encryption");
+const redisClient = require("shared/utils/redis");
+const logger = require("shared/utils/logger");
 
 const app = express();
 const PORT = process.env.PORT || 4002;
