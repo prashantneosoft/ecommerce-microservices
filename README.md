@@ -100,10 +100,13 @@ docker-compose down -v
 
 ```bash
 # Start minikube
-minikube start --memory=4096 --cpus=2
+minikube start --memory=2048 --cpus=2
 
 # Enable ingress
 minikube addons enable ingress
+
+#get minikube ip
+minikube ip
 
 # Add to /etc/hosts
 echo "$(minikube ip) ecommerce.local" | sudo tee -a /etc/hosts
