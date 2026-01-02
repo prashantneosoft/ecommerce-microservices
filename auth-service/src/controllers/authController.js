@@ -1,5 +1,6 @@
 const authService = require("../services/authService");
-const { asyncHandler } = require("shared/middleware/errorHandler");
+const { middleware } = require("@prashant-neosoft-ecommerce/shared");
+const { asyncHandler } = middleware.errorHandler;
 
 exports.register = asyncHandler(async (req, res) => {
   const result = await authService.register(req.body);

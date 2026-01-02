@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const redisClient = require("shared/utils/redis");
-const { AppError } = require("shared/middleware/errorHandler");
+const { utils, middleware } = require("@prashant-neosoft-ecommerce/shared");
+
+const redisClient = utils.redis;
+const { AppError } = middleware.errorHandler;
 
 class AuthService {
   generateAccessToken(userId, role) {
@@ -34,7 +36,7 @@ class AuthService {
     await redisClient.set(
       `user:${user._id}`,
       JSON.stringify({ userId: user._id, role: user.role }),
-      900
+      900 // 15 minutes
     );
 
     return { user, accessToken, refreshToken };

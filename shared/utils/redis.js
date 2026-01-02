@@ -16,6 +16,7 @@ class RedisClient {
           const delay = Math.min(times * 50, 2000);
           return delay;
         },
+        lazyConnect: false, // Connect immediately
       });
 
       this.client.on("connect", () => {
@@ -23,18 +24,36 @@ class RedisClient {
         logger.info("Redis connected successfully");
       });
 
+      this.client.on("ready", () => {
+        this.isConnected = true;
+        logger.info("Redis ready to accept commands");
+      });
+
       this.client.on("error", (err) => {
+        this.isConnected = false;
         logger.error("Redis error:", err);
       });
 
+      this.client.on("close", () => {
+        this.isConnected = false;
+        logger.warn("Redis connection closed");
+      });
+
+      // Wait for connection to be ready
+      await this.client.ping();
+
       return this.client;
     } catch (error) {
+      this.isConnected = false;
       logger.error("Redis connection failed:", error);
-      throw error;
+      // Don't throw error, allow app to continue without Redis
+      return null;
     }
   }
 
   async get(key) {
+    if (!this.isConnected) return null;
+
     try {
       return await this.client.get(key);
     } catch (error) {
@@ -44,6 +63,8 @@ class RedisClient {
   }
 
   async set(key, value, expireSeconds = 300) {
+    if (!this.isConnected) return;
+
     try {
       if (typeof value === "object") {
         value = JSON.stringify(value);
@@ -55,6 +76,8 @@ class RedisClient {
   }
 
   async del(key) {
+    if (!this.isConnected) return;
+
     try {
       await this.client.del(key);
     } catch (error) {
@@ -63,6 +86,8 @@ class RedisClient {
   }
 
   async exists(key) {
+    if (!this.isConnected) return false;
+
     try {
       return await this.client.exists(key);
     } catch (error) {
