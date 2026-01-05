@@ -1,9 +1,11 @@
 const Payment = require("../models/Payment");
 const paymentGateway = require("./paymentGateway");
 const retryService = require("./retryService");
-const { AppError } = require("shared/middleware/errorHandler");
-const { EVENTS, PAYMENT_STATUS } = require("shared/utils/constants");
-const logger = require("shared/utils/logger");
+const { middleware, utils } = require("@prashant-neosoft-ecommerce/shared");
+
+const { AppError } = middleware.errorHandler;
+const { EVENTS, PAYMENT_STATUS } = utils.constants;
+const logger = utils.logger.child({ service: "payment-service" });
 
 class PaymentService {
   async processPayment(paymentData) {

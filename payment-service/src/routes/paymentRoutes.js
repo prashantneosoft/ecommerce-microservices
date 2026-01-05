@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const paymentController = require("../controllers/paymentController");
-const { auth } = require("shared/middleware/auth");
-const { standardLimiter } = require("shared/middleware/rateLimiter");
+const { middleware } = require("@prashant-neosoft-ecommerce/shared");
+
+const { auth } = middleware.auth;
+const { standardLimiter } = middleware.rateLimiter;
 
 router.use(auth);
 

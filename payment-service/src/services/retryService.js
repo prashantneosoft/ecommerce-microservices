@@ -1,5 +1,7 @@
 const axios = require("axios");
-const logger = require("shared/utils/logger");
+const { utils } = require("@prashant-neosoft-ecommerce/shared");
+
+const logger = utils.logger.child({ service: "payment-service" });
 
 class RetryService {
   async retryWithBackoff(

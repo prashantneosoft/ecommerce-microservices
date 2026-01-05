@@ -1,5 +1,7 @@
 const paymentService = require("../services/paymentService");
-const { asyncHandler } = require("shared/middleware/errorHandler");
+const { middleware } = require("@prashant-neosoft-ecommerce/shared");
+
+const { asyncHandler } = middleware.errorHandler;
 
 exports.processPayment = asyncHandler(async (req, res) => {
   const paymentData = {

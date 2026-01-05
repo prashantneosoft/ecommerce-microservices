@@ -1,5 +1,6 @@
-const logger = require("shared/utils/logger");
+const { utils } = require("@prashant-neosoft-ecommerce/shared");
 
+const logger = utils.logger.child({ service: "payment-service" });
 class PaymentGateway {
   async processPayment(paymentData) {
     logger.info("Processing payment...", { orderId: paymentData.orderId });
