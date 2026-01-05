@@ -1,5 +1,7 @@
 const productService = require("../services/productService");
-const { asyncHandler } = require("shared/middleware/errorHandler");
+const { middleware } = require("@prashant-neosoft-ecommerce/shared");
+
+const { asyncHandler } = middleware.errorHandler;
 
 exports.createProduct = asyncHandler(async (req, res) => {
   const product = await productService.createProduct(req.body);

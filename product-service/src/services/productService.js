@@ -1,7 +1,10 @@
 const Product = require("../models/Product");
-const redisClient = require("shared/utils/redis");
-const { AppError } = require("shared/middleware/errorHandler");
-const { CACHE_TTL } = require("shared/utils/constants");
+const { utils, middleware } = require("@prashant-neosoft-ecommerce/shared");
+
+const redisClient = utils.redis;
+const logger = utils.logger.child({ service: "product-service" });
+const { AppError } = middleware.errorHandler;
+const { CACHE_TTL } = utils.constants;
 
 class ProductService {
   async createProduct(productData) {

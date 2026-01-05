@@ -5,10 +5,12 @@ const helmet = require("helmet");
 const cors = require("cors");
 const compression = require("compression");
 const productRoutes = require("./routes/productRoutes");
-const { errorHandler } = require("shared/middleware/errorHandler");
-const { encryptionMiddleware } = require("shared/middleware/encryption");
-const redisClient = require("shared/utils/redis");
-const logger = require("shared/utils/logger");
+const { middleware, utils } = require("@prashant-neosoft-ecommerce/shared");
+
+const { errorHandler } = middleware.errorHandler;
+const { encryptionMiddleware } = middleware.encryption;
+const redisClient = utils.redis;
+const logger = utils.logger.child({ service: "product-service" });
 
 const app = express();
 const PORT = process.env.PORT || 4002;
@@ -29,10 +31,8 @@ app.use(errorHandler);
 
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URI);
+
     logger.info("MongoDB connected");
 
     await redisClient.connect();
