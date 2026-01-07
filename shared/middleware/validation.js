@@ -40,6 +40,9 @@ const schemas = {
     stock: Joi.number().integer().min(0).required(),
     category: Joi.string().required(),
     sku: Joi.string().required(),
+    images: Joi.array().items(Joi.string().uri()).optional(),
+    isActive: Joi.boolean().optional(),
+    metadata: Joi.object().unknown(true).optional(),
   }),
 
   order: Joi.object({

@@ -27,7 +27,12 @@ app.use(helmet());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS?.split(",") || "*" }));
 app.use(compression());
 app.use(express.json({ limit: "10mb" }));
-app.use(encryptionMiddleware);
+app.use((req, res, next) => {
+  if (req.path.startsWith("/api/auth")) {
+    return next();
+  }
+  return encryptionMiddleware(req, res, next);
+});
 
 // Health check endpoint (before routes)
 app.get("/health", (req, res) => {
@@ -55,7 +60,7 @@ const startServer = async () => {
       serverSelectionTimeoutMS: 5000,
     });
     logger.info("MongoDB connected successfully");
-
+    console.log("connected-auth-srv-mongo");
     // Connect to Redis
     await redisClient.connect();
     logger.info("Redis connected successfully");

@@ -375,6 +375,33 @@ Create `.env` files for each service with production values.
 ### Service Won't Start
 
 ```bash
+docker info
+
+sudo systemctl restart docker
+
+
+minikube start --driver=docker
+
+minikube ip
+
+kubectl exec -it deploy/redis-depl -- redis-cli ping
+
+kubectl port-forward svc/api-gateway-srv 3000:3000
+
+kubectl port-forward svc/api-gateway-srv 3000:3000 &
+kubectl port-forward svc/auth-srv 4001:4001 &
+kubectl port-forward svc/product-srv 4002:4002 &
+kubectl port-forward svc/order-srv 4003:4003 &
+kubectl port-forward svc/payment-srv 4004:4004 &
+kubectl port-forward svc/event-bus-srv 4005:4005 &
+kubectl port-forward svc/mongodb-srv 27017:27017 &
+kubectl port-forward svc/redis-srv 6379:6379 &
+
+# to stop all
+pkill -f "kubectl port-forward"
+
+sudo systemctl start mongod
+
 # Check logs
 docker-compose logs SERVICE_NAME
 
