@@ -1,0 +1,2 @@
+{"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-12T09:32:59.106Z"}
+{"level":"info","message":"Payment Service listening on port 4004","service":"unknown","timestamp":"2026-01-12T09:32:59.111Z"}

@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const axios = require("axios");
 const helmet = require("helmet");
@@ -16,9 +16,12 @@ app.use(express.json());
 
 const events = [];
 const serviceEndpoints = [
-  { name: "order-service", url: "http://order-srv:4003/events" },
-  { name: "payment-service", url: "http://payment-srv:4004/events" },
-  { name: "product-service", url: "http://product-srv:4002/events" },
+  { name: "order-service", url: "http://localhost:4003/events" },
+  { name: "payment-service", url: "http://localhost:4004/events" },
+  { name: "product-service", url: "http://localhost:4002/events" },
+  // { name: "order-service", url: "http://order-srv:4003/events" },
+  // { name: "payment-service", url: "http://payment-srv:4004/events" },
+  // { name: "product-service", url: "http://product-srv:4002/events" },
 ];
 
 const retryWithBackoff = async (

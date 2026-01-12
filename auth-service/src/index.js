@@ -1,10 +1,11 @@
 const path = require("path");
-require("dotenv").config({
-  path:
-    process.env.NODE_ENV === "development"
-      ? path.resolve(".env.local")
-      : path.resolve(".env.k8s"),
-});
+require("dotenv").config({ path: "../.env" });
+// require("dotenv").config({
+//   path:
+//     process.env.NODE_ENV === "development"
+//       ? path.resolve(".env.local")
+//       : path.resolve(".env.k8s"),
+// });
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -54,6 +55,7 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     // Connect to MongoDB
+    console.log("process.env.MONGODB_URI :>> ", process.env.MONGODB_URI);
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -97,7 +99,7 @@ process.on("SIGINT", async () => {
 
 startServer();
 
-// require("dotenv").config();
+// require("dotenv").config({ path: "../.env" });
 // const express = require("express");
 // const mongoose = require("mongoose");
 // const helmet = require("helmet");
