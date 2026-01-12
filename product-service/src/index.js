@@ -31,11 +31,15 @@ app.use(errorHandler);
 
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(
+      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/products"
+    );
 
     logger.info("MongoDB connected");
 
     await redisClient.connect();
+
+    console.log("Product service is healthy and mongodb is connected");
 
     app.listen(PORT, () => {
       logger.info(`Product Service listening on port ${PORT}`);

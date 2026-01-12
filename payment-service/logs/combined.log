@@ -1,2 +1,8 @@
 {"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-12T09:32:59.106Z"}
 {"level":"info","message":"Payment Service listening on port 4004","service":"unknown","timestamp":"2026-01-12T09:32:59.111Z"}
+{"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-12T10:05:51.037Z"}
+{"level":"info","message":"Payment Service listening on port 4004","service":"unknown","timestamp":"2026-01-12T10:05:51.042Z"}
+{"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-12T10:07:36.932Z"}
+{"level":"info","message":"Payment Service listening on port 4004","service":"unknown","timestamp":"2026-01-12T10:07:36.936Z"}
+{"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-12T10:08:53.089Z"}
+{"level":"info","message":"Payment Service listening on port 4004","service":"unknown","timestamp":"2026-01-12T10:08:53.094Z"}

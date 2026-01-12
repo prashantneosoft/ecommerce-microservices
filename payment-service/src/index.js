@@ -35,11 +35,15 @@ app.use(errorHandler);
 
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/payments",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     logger.info("MongoDB connected");
+    console.log("Payments is healthy and MongoDB is connected");
 
     app.listen(PORT, () => {
       logger.info(`Payment Service listening on port ${PORT}`);

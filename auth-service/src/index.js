@@ -1,5 +1,5 @@
 const path = require("path");
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 // require("dotenv").config({
 //   path:
 //     process.env.NODE_ENV === "development"
@@ -56,11 +56,14 @@ const startServer = async () => {
   try {
     // Connect to MongoDB
     console.log("process.env.MONGODB_URI :>> ", process.env.MONGODB_URI);
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
-    });
+    await mongoose.connect(
+      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/auth?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 5000,
+      }
+    );
     logger.info("MongoDB connected successfully");
     console.log("connected-auth-srv-mongo");
     // Connect to Redis

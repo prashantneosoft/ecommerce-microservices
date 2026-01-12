@@ -30,15 +30,17 @@ app.get("/health", (req, res) => {
 });
 
 app.use(errorHandler);
-
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/orders",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     logger.info("MongoDB connected");
-
+    console.log("order-service is healthy and MongoDB connected");
     await redisClient.connect();
 
     app.listen(PORT, () => {
