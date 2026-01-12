@@ -10,8 +10,12 @@ class RedisClient {
   async connect() {
     try {
       this.client = new Redis({
-        host: process.env.REDIS_HOST || "localhost",
-        port: process.env.REDIS_PORT || 6379,
+        host: process.env.REDIS_HOST,
+        port: Number(process.env.REDIS_PORT),
+        password: process.env.REDIS_PASSWORD, // 🔥 REQUIRED
+        tls: {}, // 🔥 REQUIRED for Redis Cloud
+        connectTimeout: 10000,
+        maxRetriesPerRequest: 3,
         retryStrategy: (times) => {
           const delay = Math.min(times * 50, 2000);
           return delay;
