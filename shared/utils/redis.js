@@ -11,16 +11,14 @@ class RedisClient {
     try {
       this.client = new Redis({
         host: process.env.REDIS_HOST,
-        port: Number(process.env.REDIS_PORT),
-        password: process.env.REDIS_PASSWORD, // 🔥 REQUIRED
-        tls: {}, // 🔥 REQUIRED for Redis Cloud
-        connectTimeout: 10000,
-        maxRetriesPerRequest: 3,
-        retryStrategy: (times) => {
-          const delay = Math.min(times * 50, 2000);
-          return delay;
+        port: process.env.REDIS_PORT,
+        password: process.env.REDIS_PASSWORD,
+        tls: process.env.REDIS_TLS === "true" ? {} : undefined,
+        maxRetriesPerRequest: 5,
+        enableReadyCheck: true,
+        retryStrategy(times) {
+          return Math.min(times * 200, 2000);
         },
-        lazyConnect: false, // Connect immediately
       });
 
       this.client.on("connect", () => {
