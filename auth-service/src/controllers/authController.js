@@ -1,6 +1,7 @@
 const authService = require("../services/authService");
-const { middleware } = require("@prashant-neosoft-ecommerce/shared");
+const { middleware, utils } = require("@prashant-neosoft-ecommerce/shared");
 const { asyncHandler } = middleware.errorHandler;
+const redisClient = utils.redis;
 
 exports.register = asyncHandler(async (req, res) => {
   const result = await authService.register(req.body);
@@ -18,6 +19,12 @@ exports.register = asyncHandler(async (req, res) => {
 exports.login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const result = await authService.login(email, password);
+
+  await redisClient.set(
+    `user:${result.user._id}`,
+    JSON.stringify(result.user),
+    3600 // 1 hour
+  );
 
   res.json({
     success: true,

@@ -57,7 +57,7 @@ const startServer = async () => {
     // Connect to MongoDB
     console.log("process.env.MONGODB_URI :>> ", process.env.MONGODB_URI);
     await mongoose.connect(
-      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/auth?retryWrites=true&w=majority",
+      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/ecommerce",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

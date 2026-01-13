@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
@@ -32,7 +32,7 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/products"
+      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/ecommerce"
     );
 
     logger.info("MongoDB connected");
