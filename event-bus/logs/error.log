@@ -1,0 +1,13 @@
+{"error":"Request failed with status code 404","level":"error","message":"Failed to send event to product-service after retries","service":"unknown","timestamp":"2026-01-13T07:51:37.102Z"}
+{"error":"Request failed with status code 500","level":"error","message":"Failed to send event to payment-service after retries","service":"unknown","timestamp":"2026-01-13T07:51:37.165Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T08:33:44.075Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T08:33:44.084Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T12:28:39.917Z"}
+{"level":"error","message":"❌ Failed to send to order-service","service":"unknown","timestamp":"2026-01-13T12:28:39.918Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T12:28:39.932Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T13:21:09.081Z"}
+{"level":"error","message":"❌ Failed to send to order-service","service":"unknown","timestamp":"2026-01-13T13:21:09.084Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T13:21:09.090Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T13:28:06.345Z"}
+{"level":"error","message":"❌ Failed to send to order-service","service":"unknown","timestamp":"2026-01-13T13:28:06.346Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T13:28:06.354Z"}

@@ -5,7 +5,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const compression = require("compression");
 const orderRoutes = require("./routes/orderRoutes");
-const orderController = require("./controllers/orderController");
+// const orderController = require("./controllers/orderController");
 const { middleware, utils } = require("@prashant-neosoft-ecommerce/shared");
 
 const { errorHandler } = middleware.errorHandler;
@@ -23,7 +23,7 @@ app.use(express.json({ limit: "10mb" }));
 app.use(encryptionMiddleware);
 
 app.use("/api/orders", orderRoutes);
-app.post("/events", orderController.handleEvent);
+// app.post("/events", orderController.handleEvent);
 
 app.get("/health", (req, res) => {
   res.json({ status: "healthy", service: "order-service" });
@@ -33,7 +33,7 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/orders",
+      "mongodb+srv://erghadialiprashant_db_user:1vyB18f37DNeqhkZ@cluster0.5ln4qv9.mongodb.net/ecommerce",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

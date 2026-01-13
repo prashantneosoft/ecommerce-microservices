@@ -5,7 +5,7 @@ const { asyncHandler } = middleware.errorHandler;
 const { EVENTS } = utils.constants;
 
 exports.createOrder = asyncHandler(async (req, res) => {
-  const order = await orderService.createOrder(req.user.userId, req.body);
+  const order = await orderService.createOrder(req.user._id, req.body);
 
   res.status(201).json({
     success: true,
@@ -29,7 +29,8 @@ exports.getOrders = asyncHandler(async (req, res) => {
 });
 
 exports.getOrder = asyncHandler(async (req, res) => {
-  const order = await orderService.getOrderById(req.params.id, req.user.userId);
+  console.log("req.user :>> ", req.user);
+  const order = await orderService.getOrderById(req.params.id, req.user._id);
 
   res.json({
     success: true,
@@ -38,7 +39,7 @@ exports.getOrder = asyncHandler(async (req, res) => {
 });
 
 exports.cancelOrder = asyncHandler(async (req, res) => {
-  const order = await orderService.cancelOrder(req.params.id, req.user.userId);
+  const order = await orderService.cancelOrder(req.params.id, req.user._id);
 
   res.json({
     success: true,

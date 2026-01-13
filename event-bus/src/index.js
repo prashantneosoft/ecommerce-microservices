@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const helmet = require("helmet");
@@ -16,9 +16,9 @@ app.use(express.json());
 
 const events = [];
 const serviceEndpoints = [
+  { name: "product-service", url: "http://localhost:4002/events" },
   { name: "order-service", url: "http://localhost:4003/events" },
   { name: "payment-service", url: "http://localhost:4004/events" },
-  { name: "product-service", url: "http://localhost:4002/events" },
   // { name: "order-service", url: "http://order-srv:4003/events" },
   // { name: "payment-service", url: "http://payment-srv:4004/events" },
   // { name: "product-service", url: "http://product-srv:4002/events" },
@@ -53,41 +53,67 @@ const retryWithBackoff = async (
 };
 
 app.post("/events", async (req, res) => {
-  const event = req.body;
+  let events = req.body;
 
-  events.push({
-    ...event,
-    timestamp: new Date(),
-    id: events.length + 1,
-  });
+  // Normalize
+  if (!Array.isArray(events)) {
+    events = [events];
+  }
 
-  logger.info(`Event received: ${event.type}`, { eventId: events.length });
+  for (const event of events) {
+    logger.info(`📩 Event received: ${event.type}`);
 
-  const promises = serviceEndpoints.map(async (service) => {
-    try {
-      await retryWithBackoff(
-        async () => {
-          await axios.post(service.url, event, { timeout: 10000 });
-          logger.info(`Event sent to ${service.name}`, {
-            eventType: event.type,
-          });
-        },
-        3,
-        1000,
-        10000
-      );
-    } catch (error) {
-      logger.error(`Failed to send event to ${service.name} after retries`, {
-        eventType: event.type,
-        error: error.message,
-      });
-    }
-  });
+    const promises = serviceEndpoints.map((service) =>
+      retryWithBackoff(async () => {
+        await axios.post(service.url, event, { timeout: 10000 });
+        logger.info(`➡ Event ${event.type} sent to ${service.name}`);
+      }).catch((err) => {
+        logger.error(`❌ Failed to send to ${service.name}`, err.message);
+      })
+    );
 
-  Promise.allSettled(promises);
+    await Promise.allSettled(promises);
+  }
 
-  res.status(200).json({ status: "OK" });
+  res.json({ status: "OK" });
 });
+
+// app.post("/events", async (req, res) => {
+//   const event = req.body;
+//   console.log("event :>> ", event);
+//   events.push({
+//     ...event,
+//     timestamp: new Date(),
+//     id: events.length + 1,
+//   });
+
+//   logger.info(`Event received: ${event.type}`, { eventId: events.length });
+
+//   const promises = serviceEndpoints.map(async (service) => {
+//     try {
+//       await retryWithBackoff(
+//         async () => {
+//           await axios.post(service.url, event, { timeout: 10000 });
+//           logger.info(`Event sent to ${service.name}`, {
+//             eventType: event.type,
+//           });
+//         },
+//         3,
+//         1000,
+//         10000
+//       );
+//     } catch (error) {
+//       logger.error(`Failed to send event to ${service.name} after retries`, {
+//         eventType: event.type,
+//         error: error.message,
+//       });
+//     }
+//   });
+
+//   Promise.allSettled(promises);
+
+//   res.status(200).json({ status: "OK" });
+// });
 
 app.get("/events", (req, res) => {
   res.json(events);

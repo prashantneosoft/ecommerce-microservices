@@ -2,3 +2,68 @@
 {"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-12T09:28:40.973Z"}
 {"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-12T09:30:21.263Z"}
 {"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-12T10:00:26.769Z"}
+{"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-13T06:15:43.760Z"}
+{"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-13T06:50:53.409Z"}
+{"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-13T07:48:38.282Z"}
+{"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-13T07:50:02.262Z"}
+{"eventId":1,"level":"info","message":"Event received: undefined","service":"unknown","timestamp":"2026-01-13T07:51:34.066Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T07:51:34.094Z"}
+{"level":"info","message":"Event sent to order-service","service":"unknown","timestamp":"2026-01-13T07:51:34.120Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T07:51:34.155Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T07:51:35.097Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T07:51:35.160Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T07:51:37.102Z"}
+{"error":"Request failed with status code 404","level":"error","message":"Failed to send event to product-service after retries","service":"unknown","timestamp":"2026-01-13T07:51:37.102Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T07:51:37.164Z"}
+{"error":"Request failed with status code 500","level":"error","message":"Failed to send event to payment-service after retries","service":"unknown","timestamp":"2026-01-13T07:51:37.165Z"}
+{"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-13T08:32:43.977Z"}
+{"level":"info","message":"📩 Event received: ProductCreated","service":"unknown","timestamp":"2026-01-13T08:33:41.047Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T08:33:41.068Z"}
+{"level":"info","message":"➡ Event ProductCreated sent to order-service","service":"unknown","timestamp":"2026-01-13T08:33:41.070Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T08:33:41.076Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T08:33:42.072Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T08:33:42.080Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T08:33:44.074Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T08:33:44.075Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T08:33:44.084Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T08:33:44.084Z"}
+{"level":"info","message":"Event Bus listening on port 4005","service":"unknown","timestamp":"2026-01-13T09:44:06.971Z"}
+{"level":"info","message":"📩 Event received: OrderCreated","service":"unknown","timestamp":"2026-01-13T12:28:36.889Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T12:28:36.909Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T12:28:36.910Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T12:28:36.922Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T12:28:37.913Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T12:28:37.914Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T12:28:37.927Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T12:28:39.917Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T12:28:39.917Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T12:28:39.918Z"}
+{"level":"error","message":"❌ Failed to send to order-service","service":"unknown","timestamp":"2026-01-13T12:28:39.918Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T12:28:39.931Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T12:28:39.932Z"}
+{"level":"info","message":"📩 Event received: OrderCreated","service":"unknown","timestamp":"2026-01-13T13:21:06.060Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T13:21:06.069Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T13:21:06.071Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T13:21:06.073Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T13:21:07.073Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T13:21:07.075Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T13:21:07.079Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T13:21:09.081Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T13:21:09.081Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T13:21:09.084Z"}
+{"level":"error","message":"❌ Failed to send to order-service","service":"unknown","timestamp":"2026-01-13T13:21:09.084Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T13:21:09.089Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T13:21:09.090Z"}
+{"level":"info","message":"📩 Event received: OrderCreated","service":"unknown","timestamp":"2026-01-13T13:28:03.330Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T13:28:03.337Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T13:28:03.339Z"}
+{"level":"warn","message":"Retry attempt 1/3 failed. Retrying in 1000ms...","service":"unknown","timestamp":"2026-01-13T13:28:03.339Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T13:28:04.341Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T13:28:04.343Z"}
+{"level":"warn","message":"Retry attempt 2/3 failed. Retrying in 2000ms...","service":"unknown","timestamp":"2026-01-13T13:28:04.345Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T13:28:06.345Z"}
+{"level":"error","message":"❌ Failed to send to product-service","service":"unknown","timestamp":"2026-01-13T13:28:06.345Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T13:28:06.346Z"}
+{"level":"error","message":"❌ Failed to send to order-service","service":"unknown","timestamp":"2026-01-13T13:28:06.346Z"}
+{"level":"warn","message":"Retry attempt 3/3 failed. Retrying in 4000ms...","service":"unknown","timestamp":"2026-01-13T13:28:06.353Z"}
+{"level":"error","message":"❌ Failed to send to payment-service","service":"unknown","timestamp":"2026-01-13T13:28:06.354Z"}

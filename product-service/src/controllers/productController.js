@@ -39,7 +39,7 @@ exports.getProduct = asyncHandler(async (req, res) => {
 exports.getBulkProducts = asyncHandler(async (req, res) => {
   const { ids } = req.body;
   const products = await productService.getProductsByIds(ids);
-
+  console.log("products in bulk :>> ", products);
   res.json({
     success: true,
     data: products,

@@ -20,18 +20,19 @@ class OrderService {
         { timeout: 5000 }
       );
 
-      const products = productsResponse.data;
-
+      const products = productsResponse.data.data;
+      console.log("Products :", products);
       let totalAmount = 0;
       const orderItems = orderData.items.map((item) => {
         const product = products.find(
           (p) => p._id.toString() === item.productId
         );
-
+        console.log("product single :>> ", product);
         if (!product) {
           throw new AppError(`Product ${item.productId} not found`, 404);
         }
-
+        console.log("product.stock :>> ", product.stock);
+        console.log("item.quantity :>> ", item.quantity);
         if (product.stock < item.quantity) {
           throw new AppError(`Insufficient stock for ${product.name}`, 400);
         }

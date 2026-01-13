@@ -225,3 +225,9 @@
 {"code":"EAI_AGAIN","errno":-3001,"hostname":"redis-srv","level":"error","message":"Redis error: getaddrinfo EAI_AGAIN redis-srv","service":"auth-service","stack":"Error: getaddrinfo EAI_AGAIN redis-srv\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)","syscall":"getaddrinfo","timestamp":"2026-01-12T09:55:03.952Z"}
 {"level":"warn","message":"Redis connection closed","service":"auth-service","timestamp":"2026-01-12T09:55:03.953Z"}
 {"level":"info","message":"SIGINT received, shutting down gracefully","service":"auth-service","timestamp":"2026-01-12T09:55:04.657Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"auth-service","timestamp":"2026-01-13T12:28:13.635Z"}
+{"level":"info","message":"Redis connected successfully","service":"auth-service","timestamp":"2026-01-13T12:28:13.723Z"}
+{"level":"info","message":"Redis ready to accept commands","service":"auth-service","timestamp":"2026-01-13T12:28:13.740Z"}
+{"level":"info","message":"Redis connected successfully","service":"auth-service","timestamp":"2026-01-13T12:28:13.744Z"}
+{"level":"info","message":"Auth Service listening on port 4001","service":"auth-service","timestamp":"2026-01-13T12:28:13.749Z"}
+{"level":"info","message":"Environment: development","service":"auth-service","timestamp":"2026-01-13T12:28:13.750Z"}

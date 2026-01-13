@@ -181,3 +181,16 @@
 {"level":"info","message":"Redis connected successfully","service":"unknown","timestamp":"2026-01-12T10:09:33.349Z"}
 {"command":{"args":[],"name":"info"},"level":"error","message":"Redis error: NOAUTH Authentication required","service":"unknown","stack":"ReplyError: NOAUTH Authentication required\n    at parseError (/home/neosoft/Documents/ecommerce-microservices/product-service/node_modules/redis-parser/lib/parser.js:179:12)\n    at parseType (/home/neosoft/Documents/ecommerce-microservices/product-service/node_modules/redis-parser/lib/parser.js:302:14)","timestamp":"2026-01-12T10:09:33.362Z"}
 {"level":"warn","message":"Redis connection closed","service":"unknown","timestamp":"2026-01-12T10:09:33.367Z"}
+{"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-13T07:23:56.898Z"}
+{"level":"info","message":"Redis connected successfully","service":"unknown","timestamp":"2026-01-13T07:23:56.940Z"}
+{"level":"info","message":"Redis ready to accept commands","service":"unknown","timestamp":"2026-01-13T07:23:56.960Z"}
+{"level":"info","message":"Product Service listening on port 4002","service":"unknown","timestamp":"2026-01-13T07:23:56.973Z"}
+{"level":"error","message":"Product with this SKU already exists","method":"POST","path":"/api/products","service":"unknown","stack":"Error: Product with this SKU already exists\n    at ProductService.createProduct (/home/neosoft/Documents/ecommerce-microservices/product-service/src/services/productService.js:15:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/neosoft/Documents/ecommerce-microservices/product-service/src/controllers/productController.js:7:19","statusCode":400,"timestamp":"2026-01-13T07:46:45.574Z"}
+{"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-13T10:45:54.288Z"}
+{"level":"info","message":"Redis connected successfully","service":"unknown","timestamp":"2026-01-13T10:45:54.363Z"}
+{"level":"info","message":"Redis ready to accept commands","service":"unknown","timestamp":"2026-01-13T10:45:54.418Z"}
+{"level":"info","message":"Product Service listening on port 4002","service":"unknown","timestamp":"2026-01-13T10:45:54.437Z"}
+{"level":"info","message":"MongoDB connected","service":"unknown","timestamp":"2026-01-13T11:19:59.841Z"}
+{"level":"info","message":"Redis connected successfully","service":"unknown","timestamp":"2026-01-13T11:19:59.891Z"}
+{"level":"info","message":"Redis ready to accept commands","service":"unknown","timestamp":"2026-01-13T11:19:59.922Z"}
+{"level":"info","message":"Product Service listening on port 4002","service":"unknown","timestamp":"2026-01-13T11:19:59.935Z"}
