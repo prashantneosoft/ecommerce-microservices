@@ -10,6 +10,10 @@ const { standardLimiter } = middleware.rateLimiter;
 const { encrypt, decrypt } = middleware.encryption;
 const logger = utils.logger;
 const redisClient = utils.redis;
+console.log(
+  "redisClient :============================================",
+  redisClient
+);
 
 const app = express();
 const PORT = process.env.PORT || 3000;

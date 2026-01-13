@@ -14,11 +14,7 @@ class RedisClient {
         port: process.env.REDIS_PORT,
         password: process.env.REDIS_PASSWORD,
         tls: process.env.REDIS_TLS === "true" ? {} : undefined,
-        maxRetriesPerRequest: 5,
-        enableReadyCheck: true,
-        retryStrategy(times) {
-          return Math.min(times * 200, 2000);
-        },
+        retryStrategy: (times) => Math.min(times * 100, 2000),
       });
 
       this.client.on("connect", () => {
